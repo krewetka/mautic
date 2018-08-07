@@ -156,7 +156,7 @@ class PluginModel extends FormModel
                 }
 
                 if ($currentSchema->hasTable($table)) {
-                    $installedPluginsTables[$bundleName][] = $currentSchema->getTable($table);
+                    $installedPluginsTables[$bundleName][$table] = $currentSchema->getTable($table);
                 }
             }
         }
