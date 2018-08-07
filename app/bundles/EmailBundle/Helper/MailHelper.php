@@ -197,7 +197,7 @@ class MailHelper
     /**
      * @var array
      */
-    private $systemHeaders = [];
+    protected $systemHeaders = [];
 
     /**
      * @var array
@@ -232,26 +232,26 @@ class MailHelper
      *
      * @var int
      */
-    private $messageSentCount = 0;
+    protected $messageSentCount = 0;
 
     /**
      * Large batch mail sends may result on timeouts with SMTP servers. This will will keep track of when a transport was last started and force a restart after set number of minutes.
      *
      * @var int
      */
-    private $transportStartTime;
+    protected $transportStartTime;
 
     /**
      * Simply a md5 of the content so that event listeners can easily determine if the content has been changed.
      *
      * @var string
      */
-    private $contentHash;
+    protected $contentHash;
 
     /**
      * @var array
      */
-    private $copies = [];
+    protected $copies = [];
 
     /**
      * @param MauticFactory $factory
@@ -1484,7 +1484,7 @@ class MailHelper
     /**
      * @return bool|string
      */
-    private function getUnsubscribeHeader()
+    protected function getUnsubscribeHeader()
     {
         if ($this->idHash) {
             $url = $this->factory->getRouter()->generate('mautic_email_unsubscribe', ['idHash' => $this->idHash], UrlGeneratorInterface::ABSOLUTE_URL);
@@ -2082,7 +2082,7 @@ class MailHelper
     /**
      * @return array
      */
-    private function getSystemHeaders()
+    protected function getSystemHeaders()
     {
         if ($this->email) {
             // We are purposively ignoring system headers if using an Email entity
@@ -2102,7 +2102,7 @@ class MailHelper
     /**
      * Merge system headers into custom headers if applicable.
      */
-    private function setMessageHeaders()
+    protected function setMessageHeaders()
     {
         $headers = $this->getCustomHeaders();
 
@@ -2126,7 +2126,7 @@ class MailHelper
      *
      * @return array
      */
-    private function buildMetadata($name, array $tokens)
+    protected function buildMetadata($name, array $tokens)
     {
         return [
             'name'        => $name,
@@ -2172,7 +2172,7 @@ class MailHelper
      * @param       $overrideFrom
      * @param array $systemFrom
      */
-    private function setDefaultFrom($overrideFrom, array $systemFrom)
+    protected function setDefaultFrom($overrideFrom, array $systemFrom)
     {
         if (is_array($overrideFrom)) {
             $fromEmail         = key($overrideFrom);
